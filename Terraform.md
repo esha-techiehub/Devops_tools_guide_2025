@@ -98,3 +98,88 @@ But if you need **20 servers + networking + databases** across AWS & Azure — T
 Open your terminal and run:
 ```bash
 terraform -version
+
+##** 8. Installation Steps**
+
+### **Windows**
+1. Go to [Terraform Downloads](https://developer.hashicorp.com/terraform/downloads).
+2. Download the latest **Windows** version (ZIP file).
+3. Extract the ZIP file to a folder (example: `C:\terraform`).
+4. Add the folder path to **Environment Variables**:
+   - Press `Windows + S` → search for **Environment Variables**.
+   - Edit **Path** → Add `C:\terraform`.
+5. Open **Command Prompt** or **PowerShell** and verify:
+   ```bash
+   terraform -version
+   ```
+
+---
+
+### **macOS**
+1. Install using **Homebrew**:
+   ```bash
+   brew tap hashicorp/tap
+   brew install hashicorp/tap/terraform
+   ```
+2. Verify installation:
+   ```bash
+   terraform -version
+   ```
+
+---
+
+### **Linux (Ubuntu/Debian)**
+1. Update and install dependencies:
+   ```bash
+   sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl
+   ```
+2. Add HashiCorp GPG key:
+   ```bash
+   curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+   ```
+3. Add official HashiCorp repo:
+   ```bash
+   echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+   ```
+4. Install Terraform:
+   ```bash
+   sudo apt-get update && sudo apt-get install terraform
+   ```
+5. Verify:
+   ```bash
+   terraform -version
+   ```
+
+---
+
+## 4. Verify Installation
+Run:
+```bash
+terraform -version
+```
+Example output:
+```
+Terraform v1.9.5
+on linux_amd64
+```
+
+---
+
+## 5. Uninstall Terraform
+
+### **Windows**
+- Delete the Terraform folder and remove the PATH entry.
+
+### **macOS**
+```bash
+brew uninstall terraform
+```
+
+### **Linux**
+```bash
+sudo apt-get remove terraform
+```
+
+---
+
+✅ **You have successfully installed Terraform!**
