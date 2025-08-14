@@ -183,3 +183,91 @@ sudo apt-get remove terraform
 ---
 
 ✅ **You have successfully installed Terraform!**
+
+
+
+# Terraform – Declarative vs Imperative
+
+## Question 1
+
+**Q:** What is the difference between Declarative and Imperative approaches in infrastructure as code, particularly in Terraform?
+
+**A:**
+
+**Declarative Approach:** You define the desired end state of your infrastructure, and Terraform automatically figures out the actions needed to achieve that state. You only describe what you want, not how to get there.
+
+**Imperative Approach:** You explicitly provide the step-by-step instructions for creating or modifying resources. You define both what to do and how to do it.
+
+**Example:**
+
+**Declarative (Terraform):**
+```hcl
+resource "aws_s3_bucket" "my_bucket" {
+  bucket = "my-example-bucket"
+  acl    = "private"
+}
+```
+
+Here, you simply state: “I want a private S3 bucket named `my-example-bucket`.” Terraform plans and applies the necessary steps to achieve this state.
+
+**Imperative (AWS CLI):**
+```bash
+aws s3 mb s3://my-example-bucket
+aws s3api put-bucket-acl --bucket my-example-bucket --acl private
+```
+
+Here, you manually instruct AWS step-by-step to create the bucket and set permissions.
+
+---
+
+## Question 2
+
+**Q:** Why does Terraform use a declarative approach instead of an imperative one?
+
+**A:**
+
+Terraform uses a declarative approach because:
+
+- **State Management:** Terraform maintains a state file to track the current infrastructure, enabling it to detect and apply only the necessary changes.
+- **Idempotency:** You can apply the same configuration multiple times, and Terraform ensures the end state remains consistent without recreating resources unnecessarily.
+- **Scalability:** For large environments, you don’t need to manually code each step; Terraform computes the optimal sequence.
+- **Reduced Human Error:** By focusing on what is needed rather than how to build it, there is less chance of skipping or duplicating steps.
+
+---
+
+## Question 3
+
+**Q:** Can Terraform perform imperative actions?
+
+**A:**
+
+Terraform is primarily declarative, but it can perform imperative-like tasks using:
+
+- `terraform taint` to manually mark a resource for recreation.
+- **Provisioners** (like `local-exec` or `remote-exec`) to run specific commands.
+- Manual CLI commands for certain urgent changes, although this is not best practice since it bypasses Terraform’s state management.
+
+---
+
+## Question 4
+
+**Q:** Can you give a real-life analogy for Declarative vs Imperative in Terraform?
+
+**A:**
+
+- **Declarative:** Telling an interior designer, “I want my living room to look modern with blue walls and a grey sofa.” They decide how to paint, arrange furniture, and buy decor.
+- **Imperative:** Telling the designer, “First, buy 5 litres of blue paint, then paint the walls from top to bottom, then place the sofa in the corner at a 45-degree angle.”
+
+---
+
+## Question 5
+
+**Q:** What are the key benefits of declarative infrastructure as code?
+
+**A:**
+
+- Predictable and consistent deployments.
+- Easy to understand and maintain.
+- Terraform can automatically detect and correct configuration drift.
+- Can be version-controlled like regular code.
+
