@@ -250,14 +250,5 @@ ps -ef | grep process | awk '{print $2}'
 
 ---
 
-## **Download Instructions**
-
-1. Copy the content above and save it as `README.md`  
-2. Or download it directly using a terminal:
-```bash
-curl -o README.md https://raw.githubusercontent.com/your-repo-link/README.md
-```
-
----
 
 > **✨ Notes:** This README is designed for DevOps engineers, Linux admins, and automation enthusiasts. Covers OS basics, Linux commands, shell scripting, permissions, debugging, and automation workflows.
